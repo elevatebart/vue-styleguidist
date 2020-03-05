@@ -11,6 +11,9 @@ module.exports = {
 		url: `${docSiteUrl}/Examples.html`
 	},
 	webpackConfig: {
+		resolve: {
+			extensions: ['.ts', '.js', '.vue']
+		},
 		module: {
 			rules: [
 				{
@@ -23,6 +26,14 @@ module.exports = {
 					use: {
 						loader: 'babel-loader',
 						options: require('./babel.config')
+					}
+				},
+				{
+					test: /\.tsx?$/,
+					loader: 'ts-loader',
+					exclude: /node_modules/,
+					options: {
+						appendTsSuffixTo: [/\.vue$/]
 					}
 				},
 				{
